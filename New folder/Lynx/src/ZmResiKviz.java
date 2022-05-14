@@ -28,6 +28,9 @@ public class ZmResiKviz {
    public int strCount = 1;
    public int points = 0;
    public boolean isFinished = false;
+   public String name = "";
+   public String surname = "";
+
    /** @pdOid d77c97a0-bcc3-450d-9a10-d6846137d27d */
    public void zacniResevanje() {
 
@@ -110,7 +113,17 @@ public class ZmResiKviz {
    
    /** @pdOid b2c680ad-c0e1-4da9-8bf7-9bf45eb95ad5 */
    public void zahtevajVnosImeInPriimek() {
-      // TODO: implement
+      submit.addActionListener(new ActionListener(){
+         public void actionPerformed(ActionEvent e){
+            name = t1.getText();
+            surname = t2.getText();
+            t1.setVisible(false);
+            t2.setVisible(false);
+            submit.setVisible(false);
+            count++;
+         }
+      });
+
    }
    
    /** @pdOid c8060d13-34cf-49a7-b43d-a91460e31816 */
@@ -136,6 +149,7 @@ public class ZmResiKviz {
       p.add(t1);
       p.add(t2);
       p.add(submit);
+
       return null;
    }
    
@@ -196,7 +210,13 @@ public class ZmResiKviz {
    
    /** @pdOid 04cecd53-6022-401a-b171-9f401596e8e5 */
    public void prikaziRezultat() {
-      // TODO: implement
+      while(count < 4){
+         System.out.println();
+      }
+      if(points >=50)
+      l.setText(name + " " + surname + " you are in love");
+      else l.setText(name + " " + surname + " you are not in love");
+      System.out.println(count);
    }
 
 }

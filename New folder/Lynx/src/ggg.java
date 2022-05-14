@@ -23,5 +23,7 @@ public static   String []  ques = {"Are you focusing on the positive?","Are you 
           kviz.zakljuciResevanje();
           resi.izracunaj();
           kviz.vnesiImeInPriimek();
+          kviz.zahtevajVnosImeInPriimek();
+          kviz.prikaziRezultat();
     }
 }
