@@ -16,12 +16,14 @@ public class ZmResiKviz {
 
    public JFrame f = new JFrame();
    public JLabel l = new JLabel();
+
    public JPanel p = new JPanel();
    public JButton but = new JButton("START");
    public JButton yes = new JButton("YES");
    public JButton no = new JButton("NO");
-   public JTextField  t1= new JTextField("Welcome to Javatpoint.");
-   public JTextField t2= new JTextField("AWT Tutorial");
+   public JTextField  t1= new JTextField("Ime");
+   public JTextField t2= new JTextField("Prezime");
+
    public JButton submit = new JButton("SUBMIT");
    public ggg main = new ggg();
    public int count = 0;
@@ -33,7 +35,8 @@ public class ZmResiKviz {
 
    /** @pdOid d77c97a0-bcc3-450d-9a10-d6846137d27d */
    public void zacniResevanje() {
-
+      t1.setVisible(false);
+      t2.setVisible(false);
       f.setTitle("Love questionaire");
       f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       f.setVisible(true);
@@ -49,12 +52,14 @@ public class ZmResiKviz {
       l.setSize(1000,500);
       // add text to label
       l.setText("To start the question please set the start button");
+      l.setFont(new Font("Serif", Font.PLAIN, 24));
 
       but.setLocation(900,600);
       but.setSize(80,50);
       // create a panel
 
       p.setLayout(null);
+      p.setBackground(Color.pink);
       // add label to panel
       p.add(l);
       p.add(but);
@@ -84,6 +89,11 @@ public class ZmResiKviz {
                   no.setEnabled(false);
 
                }
+               if(count == 3){
+                  zakljuciResevanje();
+                  vnesiImeInPriimek();
+                  zahtevajVnosImeInPriimek();
+               }
 
             }
 
@@ -100,11 +110,18 @@ public class ZmResiKviz {
                if(count > 2) {
                   no.setVisible(false);
                   yes.setVisible(false);
-                  yes.setEnabled(false);
-                  no.setEnabled(false);
+
+               }
+               if(count == 3){
+                  zakljuciResevanje();
+                  vnesiImeInPriimek();
+                  zahtevajVnosImeInPriimek();
                }
             }
          });
+
+
+
 
          if(count > 2) isFinished = true;
 
@@ -121,6 +138,7 @@ public class ZmResiKviz {
             t2.setVisible(false);
             submit.setVisible(false);
             count++;
+            prikaziRezultat();
          }
       });
 
@@ -128,27 +146,27 @@ public class ZmResiKviz {
    
    /** @pdOid c8060d13-34cf-49a7-b43d-a91460e31816 */
    public String vnesiImeInPriimek() {
-      while (count < 3){
-         System.out.println();
-      }
-
-
-      t1.setBounds(200,200, 300,200);
-      t2=new JTextField("AWT Tutorial");
-      t2.setBounds(950,700, 300,230);
-      t1.setBackground(Color.white);
-      t2.setBackground(Color.white);
-      t2.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-      t1.setBounds(250,700, 300,230);
-      t1.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
-      submit.setBounds(700,500,100,100);
 
 
 
 
-      p.add(t1);
-      p.add(t2);
-      p.add(submit);
+
+         t2.setBounds(1150, 700, 300, 30);
+         t1.setBackground(Color.white);
+         t2.setBackground(Color.white);
+         t2.setBorder(BorderFactory.createLineBorder(Color.darkGray, 2));
+         t1.setBounds(450, 700, 300, 30);
+         t1.setBorder(BorderFactory.createLineBorder(Color.darkGray, 2));
+         submit.setBounds(900, 500, 100, 100);
+         t1.setFont(new Font("Serif", Font.PLAIN, 16));
+         t2.setFont(new Font("Serif", Font.PLAIN, 16));
+
+         p.add(t1);
+         p.add(t2);
+         p.add(submit);
+      t1.setVisible(true);
+      t2.setVisible(true);
+      submit.setVisible(true);
 
       return null;
    }
@@ -170,7 +188,7 @@ public class ZmResiKviz {
          @Override
          public void actionPerformed(ActionEvent e) {
             but.setVisible(false);
-            but.setEnabled(false);
+
 
             l.setText(main.quest[0]);
             yes.setLocation(800,600);
@@ -197,9 +215,6 @@ public class ZmResiKviz {
    /** @pdOid 1b412d7b-fee1-49ef-ae86-71ba6bd27334 */
    public void zakljuciResevanje() {
 
-      while (count < 3){
-         System.out.println();
-      }
       l.setText("Hooray you finished! Now write your name and surname!");
    }
    
@@ -210,9 +225,7 @@ public class ZmResiKviz {
    
    /** @pdOid 04cecd53-6022-401a-b171-9f401596e8e5 */
    public void prikaziRezultat() {
-      while(count < 4){
-         System.out.println();
-      }
+
       if(points >=50)
       l.setText(name + " " + surname + " you are in love");
       else l.setText(name + " " + surname + " you are not in love");
